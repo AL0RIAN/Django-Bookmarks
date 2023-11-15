@@ -30,6 +30,7 @@ ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1']
 
 INSTALLED_APPS = [
     'account.apps.AccountConfig',
+    'images.apps.ImagesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -136,14 +137,14 @@ AUTHENTICATION_BACKENDS = [
     'social_core.backends.google.GoogleOAuth2',
 ]
 
-SOCIAL_AUTH_FACEBOOK_KEY = 'X'
-SOCIAL_AUTH_FACEBOOK_SECRET = 'X'
+SOCIAL_AUTH_FACEBOOK_KEY = '354416880382695'
+SOCIAL_AUTH_FACEBOOK_SECRET = '5ed9057f73948784025964dd7c3b3118'
 
-SOCIAL_AUTH_TWITTER_KEY = 'X'
-SOCIAL_AUTH_TWITTER_SECRET = 'X'
+SOCIAL_AUTH_TWITTER_KEY = 'yVDvoWnyNxNV6z4K8kIMVFA95'
+SOCIAL_AUTH_TWITTER_SECRET = 'iG8P2L9mfB34czZtBEJxckC3wEVgI3dxD30olHqeurSJGAw2MW'
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 'X'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'X'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '440175672084-np1hfjiaccmv1sn0uu5s6di3c27g8l6k.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 
 SOCIAL_AUTH_PIPELINE = [
     'social_core.pipeline.social_auth.social_details',
