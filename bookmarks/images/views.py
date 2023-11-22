@@ -1,7 +1,8 @@
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from .models import Image
 from .forms import ImageCreateForm
 
 
@@ -10,7 +11,6 @@ def image_create(request: HttpRequest) -> HttpResponse:
     if request.method == 'POST':
         form = ImageCreateForm(data=request.POST)
         if form.is_valid():
-            print("IS VALID?")
             cd = form.cleaned_data
             new_image = form.save(commit=False)
             new_image.user = request.user
@@ -24,3 +24,12 @@ def image_create(request: HttpRequest) -> HttpResponse:
                   'images/image/create.html',
                   {'section': 'images',
                    'form': form})
+
+
+def image_detail(request: HttpRequest, id, slug) -> HttpResponse:
+    image = get_object_or_404(Image, id=id, slug=slug)
+    context = {
+        'section': 'images',
+        'image': image,
+    }
+    return render(request, 'images/image/detail.html', {'section': 'images', 'image': image})
