@@ -3,7 +3,8 @@
 <html>
 <head>
     <title>{% block title %}{% endblock %}</title>
-    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link href="{% static " css
+    /base.css" %}" rel="stylesheet">
 </head>
 <body>
 <div id="header">
@@ -11,12 +12,12 @@
     {% if request.user.is_authenticated %}
     <ul class="menu">
         <li {% if section==
-        "dashboard" %}class='selected'{% endif %}>
-        <a href="{% url 'dashboard' %}">My dashboard</a>
+        "dashboard" %}class="selected"{% endif %}>
+        <a href="{% url " dashboard" %}">My dashboard</a>
         </li>
         <li {% if section==
         "images" %}class="selected"{% endif %}>
-        <a href="#">Images</a>
+        <a href="{% url 'images:list' %}">Images</a>
         </li>
         <li {% if section==
         "people" %}class="selected"{% endif %}>
@@ -25,15 +26,14 @@
     </ul>
     {% endif %}
     <span class="user">
-                {% if request.user.is_authenticated %}
-                    Hello {{ request.user.first_name|default:request.user.username }}
-                    <a href="{% url 'logout' %}">Logout</a>
-                {% else %}
-                    <a href="{% url 'login' %}">Log-in</a>
-                {% endif %}
-            </span>
+      {% if request.user.is_authenticated %}
+        Hello {{ request.user.first_name|default:request.user.username }},
+        <a href="{% url " logout" %}">Logout</a>
+        {% else %}
+        <a href="{% url " login" %}">Log-in</a>
+        {% endif %}
+    </span>
 </div>
-
 {% if messages %}
 <ul class="messages">
     {% for message in messages %}
@@ -44,7 +44,6 @@
     {% endfor %}
 </ul>
 {% endif %}
-
 <div id="content">
     {% block content %}
     {% endblock %}
@@ -53,9 +52,10 @@
 <script>
     const csrftoken = Cookies.get('csrftoken');
     document.addEventListener('DOMContentLoaded', (event) => {
-        {% block domready %}
-        {% endblock %}
-    });
+      // DOM loaded
+      {% block domready %}
+      {% endblock %}
+    })
 </script>
 </body>
 </html>
