@@ -5,6 +5,13 @@ from django.urls import reverse
 
 
 class Image(models.Model):
+    class Meta:
+        indexes = [
+            models.Index(fields=['-created']),
+            models.Index(fields=['-total_likes'])
+        ]
+        ordering = ['-created']
+
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              related_name='images_created',
                              on_delete=models.CASCADE)
@@ -17,12 +24,7 @@ class Image(models.Model):
     image = models.ImageField(upload_to='images/%Y/%m/%d/')
     description = models.TextField(blank=True)
     created = models.DateField(auto_now_add=True)
-
-    class Meta:
-        indexes = [
-            models.Index(fields=['-created'])
-        ]
-        ordering = ['-created']
+    total_likes = models.PositiveIntegerField(default=0)
 
     def save(self, *args, **kwargs):
         if not self.slug:
